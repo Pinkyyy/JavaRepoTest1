@@ -17,27 +17,27 @@ public class nbp {
     private FileReader _filereader;
     private String _zmienna;
     private BufferedReader _br;
-    
+
     public nbp() {
     }
 
     public void loadFile(String fileName) {
-        try{
-        _filereader = new FileReader(fileName);
-        }catch(FileNotFoundException e){
-            System.out.println("Nie znaleziono pliku");
+        try {
+            _filereader = new FileReader(fileName);
+        } catch (FileNotFoundException e) {
+            System.out.println(String.format("Nie znaleziono pliku: {0}", e.getMessage()));
         }
     }
 
     public void readFile() {
-        try{
-        _br = new BufferedReader(_filereader);
-        String linia;
-        while((linia = _br.readLine()) != null){
-            System.out.println(linia);
-        }
-        }catch(Exception e){
-            System.err.println("Error: " + e.getMessage());
+        try {
+            _br = new BufferedReader(_filereader);
+            String linia;
+            while ((linia = _br.readLine()) != null) {
+                System.out.println(linia);
+            }
+        } catch (Exception e) {
+            System.err.println(String.format("Error: {0}", e.getMessage()));
         }
     }
 
@@ -54,7 +54,7 @@ public class nbp {
      */
     public static void main(String[] args) {
         nbp oNbp = new nbp();
-        oNbp.setZmienna("D:/plik.txt");
+        oNbp.setZmienna("D:\\projects\\JavaSzkolenie\\JavaRepoTest1\\plik.txt");
         oNbp.loadFile(oNbp.getZmienna());
         oNbp.readFile();
     }
