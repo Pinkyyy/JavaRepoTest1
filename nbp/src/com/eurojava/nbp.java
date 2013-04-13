@@ -4,6 +4,8 @@
  */
 package com.eurojava;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
@@ -12,20 +14,48 @@ import java.io.FileReader;
  */
 public class nbp {
 
+    private FileReader _filereader;
+    private String _zmienna;
+    private BufferedReader _br;
+    
     public nbp() {
     }
-    
-    public void LoadFile(String fileName){
-        FileReader filereader = new FileReader(fileName);
-        
+
+    public void loadFile(String fileName) {
+        try{
+        _filereader = new FileReader(fileName);
+        }catch(FileNotFoundException e){
+            System.out.println("Nie znaleziono pliku");
+        }
     }
-    
+
+    public void readFile() {
+        try{
+        _br = new BufferedReader(_filereader);
+        String linia;
+        while((linia = _br.readLine()) != null){
+            System.out.println(linia);
+        }
+        }catch(Exception e){
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    public String getZmienna() {
+        return _zmienna;
+    }
+
+    public void setZmienna(String _zmienna) {
+        this._zmienna = _zmienna;
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        nbp oNbp = new nbp();
+        oNbp.setZmienna("D:/plik.txt");
+        oNbp.loadFile(oNbp.getZmienna());
+        oNbp.readFile();
     }
-    
-    
 }
