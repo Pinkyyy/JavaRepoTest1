@@ -14,6 +14,7 @@ import java.io.FileReader;
  */
 public class nbp {
 
+    //xxx
     private FileReader _filereader;
     private String _zmienna;
     private BufferedReader _br;
